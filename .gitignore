@@ -1,0 +1,28 @@
+/node_modules/
+/coverage
+/test/logs
+
+# OSX
+*.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editors
+.idea
+.vscode
+*~
+
+# npm config
+/.npmrc
+/test.js
+/.env
+/xunit.xml
+/Marco.md
+/dist
+/public/oauth.html
+/public/fonts.css
+/public/cockpit-core-vars.css
+/public/style.css
+*.iml
+/src/translation
