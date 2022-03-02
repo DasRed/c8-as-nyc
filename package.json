@@ -1,6 +1,6 @@
 {
     "name": "c8-as-nyc",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/c8-as-nyc.git"
@@ -12,10 +12,7 @@
     "keywords": [
         "c8",
         "nyc",
-        "parrot",
-        "eclectus",
-        "app",
-        "finance"
+        "code coverage"
     ],
     "author": "Marco Starker",
     "license": "MIT",
