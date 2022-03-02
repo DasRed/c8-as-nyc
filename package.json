@@ -1,14 +1,14 @@
 {
     "name": "c8-as-nyc",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/c8-as-nyc.git"
+        "url": "git+https://github.com/DasRed/c8-as-nyc.git"
     },
     "bugs": {
-        "url": "https://github.com/c8-as-nyc/issues"
+        "url": "https://github.com/DasRed/c8-as-nyc/issues"
     },
-    "homepage": "https://github.com/c8-as-nyc",
+    "homepage": "https://github.com/DasRed/c8-as-nyc",
     "keywords": [
         "c8",
         "nyc",
