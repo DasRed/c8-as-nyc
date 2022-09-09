@@ -18,8 +18,7 @@
     "license": "MIT",
     "scripts": {
         "postinstall": "mkdir -p ../nyc/bin && ln -sf ../../c8/bin/c8.js ../nyc/bin/nyc.js && echo https://memegenerator.net/img/instances/33868091.jpg",
-        "semantic-release": "semantic-release",
-        "publish": "npm run semantic-release"
+        "semantic-release": "semantic-release"
     },
     "peerDependencies": {
         "c8": "*"
