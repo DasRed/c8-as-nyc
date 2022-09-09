@@ -32,8 +32,8 @@ steps:
     -   name:  .npmrc
         image: busybox
         environment:
-#            GITHUB_TOKEN:
-#                from_secret: GITHUB_TOKEN
+            GITHUB_TOKEN:
+                from_secret: GITHUB_TOKEN
             NPM_TOKEN:
                 from_secret: NPM_TOKEN
             NPM_EMAIL:
