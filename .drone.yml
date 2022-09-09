@@ -41,7 +41,7 @@ steps:
         commands:
             - echo "@dasred:registry=https://npm.pkg.github.com/" > .npmrc
             - echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> .npmrc
-            - echo "_auth=$NPM_TOKEN" > .npmrc
+            - echo "_auth=$NPM_TOKEN" >> .npmrc
             - echo "email=$NPM_EMAIL" >> .npmrc
             - echo "always-auth=true" >> .npmrc
 
