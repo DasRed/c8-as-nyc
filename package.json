@@ -1,6 +1,6 @@
 {
     "name": "c8-as-nyc",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/DasRed/c8-as-nyc.git"
