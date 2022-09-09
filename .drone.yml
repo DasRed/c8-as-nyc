@@ -54,7 +54,7 @@ steps:
         image: node:18-alpine
         commands:
             - apk update && apk upgrade && apk add git
-            - npm publish
+            - npm run publish
 
     -   name:  rebuild cache
         image: meltwater/drone-cache
