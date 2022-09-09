@@ -47,20 +47,24 @@ steps:
 
     -   name:  npm install
         image: node:18-alpine
-        environment:
-            GH_TOKEN:
-                from_secret: GITHUB_TOKEN
-            GITHUB_TOKEN:
-                from_secret: GITHUB_TOKEN
-            NPM_TOKEN:
-                from_secret: NPM_TOKEN
-#            NPM_EMAIL:
-#                from_secret: NPM_EMAIL
         commands:
             - npm i
 
     -   name:  publish
         image: node:18-alpine
+        environment:
+            GH_TOKEN:
+                from_secret: GITHUB_TOKEN
+#            GITHUB_TOKEN:
+#                from_secret: GITHUB_TOKEN
+            NPM_TOKEN:
+                from_secret: NPM_TOKEN
+            NPM_USERNAME:
+                from_secret: NPM_USERNAME
+#            NPM_PASSWORD:
+#                from_secret: NPM_PASSWORD
+            NPM_EMAIL:
+                from_secret: NPM_EMAIL
         commands:
             - apk update && apk upgrade && apk add git
             - npm run publish
