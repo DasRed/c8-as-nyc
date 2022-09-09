@@ -29,24 +29,33 @@ steps:
             -   name: cache
                 path: /tmp/cache
 
-    -   name:  .npmrc
-        image: busybox
+#    -   name:  .npmrc
+#        image: busybox
+#        environment:
+#            GITHUB_TOKEN:
+#                from_secret: GITHUB_TOKEN
+#            NPM_TOKEN:
+#                from_secret: NPM_TOKEN
+#            NPM_EMAIL:
+#                from_secret: NPM_EMAIL
+#        commands:
+#            - echo "@dasred:registry=https://npm.pkg.github.com/" > .npmrc
+#            - echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> .npmrc
+#            - echo "_auth=$NPM_TOKEN" >> .npmrc
+#            - echo "email=$NPM_EMAIL" >> .npmrc
+#            - echo "always-auth=true" >> .npmrc
+
+    -   name:  npm install
+        image: node:18-alpine
         environment:
+            GH_TOKEN:
+                from_secret: GITHUB_TOKEN
             GITHUB_TOKEN:
                 from_secret: GITHUB_TOKEN
             NPM_TOKEN:
                 from_secret: NPM_TOKEN
-            NPM_EMAIL:
-                from_secret: NPM_EMAIL
-        commands:
-            - echo "@dasred:registry=https://npm.pkg.github.com/" > .npmrc
-            - echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> .npmrc
-            - echo "_auth=$NPM_TOKEN" >> .npmrc
-            - echo "email=$NPM_EMAIL" >> .npmrc
-            - echo "always-auth=true" >> .npmrc
-
-    -   name:  npm install
-        image: node:18-alpine
+#            NPM_EMAIL:
+#                from_secret: NPM_EMAIL
         commands:
             - npm i
 
