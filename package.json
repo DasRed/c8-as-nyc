@@ -18,7 +18,8 @@
     "license": "MIT",
     "scripts": {
         "postinstall": "mkdir -p ../nyc/bin && ln -sf ../../c8/bin/c8.js ../nyc/bin/nyc.js && echo https://memegenerator.net/img/instances/33868091.jpg",
-        "semantic-release": "semantic-release"
+        "semantic-release": "semantic-release",
+        "publish": "npm run semantic-release"
     },
     "peerDependencies": {
         "c8": "*"
@@ -27,6 +28,7 @@
         "@semantic-release/commit-analyzer": "^9.0.2",
         "@semantic-release/git": "^10.0.1",
         "@semantic-release/github": "^8.0.6",
+        "@semantic-release/npm": "^9.0.1",
         "semantic-release": "^19.0.5",
         "semantic-release-cli": "^5.4.4"
     },
@@ -36,16 +38,17 @@
         ],
         "plugins": [
             "@semantic-release/commit-analyzer",
+            "@semantic-release/npm",
+            [
+                "@semantic-release/git",
+                {
+                    "assets": [
+                        "package.json",
+                        "package-lock.json"
+                    ]
+                }
+            ],
             "@semantic-release/github"
-        ],
-        "prepare": [
-            {
-                "path": "@semantic-release/git",
-                "assets": [
-                    "package.json",
-                    "package-lock.json"
-                ]
-            }
         ]
     }
 }
