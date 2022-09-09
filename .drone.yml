@@ -36,10 +36,6 @@ steps:
                 from_secret: GH_TOKEN
             NPM_TOKEN:
                 from_secret: NPM_TOKEN
-            NPM_USERNAME:
-                from_secret: NPM_USERNAME
-            NPM_EMAIL:
-                from_secret: NPM_EMAIL
         commands:
             - apk update && apk upgrade && apk add git
             - npm i
