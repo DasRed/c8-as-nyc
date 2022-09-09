@@ -17,16 +17,6 @@ trigger:
     event: [ push, pull_request ]
     branch: [ main ]
 
-environment:
-    GH_TOKEN:
-        from_secret: GH_TOKEN
-    NPM_TOKEN:
-        from_secret: NPM_TOKEN
-    NPM_USERNAME:
-        from_secret: NPM_USERNAME
-    NPM_EMAIL:
-        from_secret: NPM_EMAIL
-
 steps:
     -   name:  restore cache
         image: meltwater/drone-cache
@@ -41,6 +31,15 @@ steps:
 
     -   name:  publish
         image: node:18-alpine
+        environment:
+            GH_TOKEN:
+                from_secret: GH_TOKEN
+            NPM_TOKEN:
+                from_secret: NPM_TOKEN
+            NPM_USERNAME:
+                from_secret: NPM_USERNAME
+            NPM_EMAIL:
+                from_secret: NPM_EMAIL
         commands:
             - apk update && apk upgrade && apk add git
             - npm i
