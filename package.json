@@ -40,7 +40,6 @@
             "@semantic-release/github"
         ],
         "prepare": [
-            "@semantic-release/npm",
             {
                 "path": "@semantic-release/git",
                 "assets": [

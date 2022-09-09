@@ -29,15 +29,6 @@ steps:
             -   name: cache
                 path: /tmp/cache
 
-    -   name:  .npmrc
-        image: busybox
-        environment:
-            GITHUB_TOKEN:
-                from_secret: GITHUB_TOKEN
-        commands:
-            - echo "@dasred:registry=https://npm.pkg.github.com/" > .npmrc
-            - echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> .npmrc
-
     -   name:  npm install
         image: node:18-alpine
         commands:
