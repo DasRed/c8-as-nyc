@@ -1,0 +1,76 @@
+kind: pipeline
+type: docker
+name: default
+platform:
+    os:   linux
+    arch: arm64
+
+volumes:
+    -   name: cache
+        host:
+            path: /mnt/datahdd/drone/cache
+    -   name: docker
+        host:
+            path: /var/run/docker.sock
+
+trigger:
+    event: [ push, pull_request ]
+    branch: [ main ]
+
+steps:
+    -   name:  restore cache
+        image: meltwater/drone-cache
+        settings:
+            backend: "filesystem"
+            restore: true
+            mount:
+                - 'node_modules'
+        volumes:
+            -   name: cache
+                path: /tmp/cache
+
+    -   name:  npm install
+        image: node:18-alpine
+        commands:
+            - npm i
+
+    -   name:  release
+        image: node:18-alpine
+        environment:
+            GITHUB_TOKEN:
+                from_secret: GITHUB_TOKEN
+        commands:
+            - apk update && apk upgrade && apk add git
+            - npm run semantic-release
+
+    -   name:  publish
+        image: plugins/npm
+        environment:
+            NPM_EMAIL:
+                from_secret: NPM_EMAIL
+            NPM_USER:
+                from_secret: NPM_USER
+            NPM_PASSWORD:
+                from_secret: NPM_PASSWORD
+            NPM_TOKEN:
+                from_secret: NPM_TOKEN
+        settings:
+            username: $NPM_USER
+            password: $NPM_PASSWORD
+            email:    $NPM_EMAIL
+            token:    $NPM_TOKEN
+
+    -   name:  rebuild cache
+        image: meltwater/drone-cache
+        settings:
+            backend: "filesystem"
+            rebuild: true
+            mount:
+                - 'node_modules'
+        volumes:
+            -   name: cache
+                path: /tmp/cache
+        when:
+            status:
+                - success
+                - failure
