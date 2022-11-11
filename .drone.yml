@@ -24,7 +24,7 @@ steps:
                 from_secret: NPM_TOKEN
         volumes:
             - name: node_modules
-              path: $DRONE_WORKSPACE/node_modules
+              path: /drone/src/node_modules
         commands:
             - apk update && apk upgrade && apk add git
             - npm i
