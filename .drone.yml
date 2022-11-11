@@ -8,7 +8,7 @@ platform:
 volumes:
     -   name: node_modules
         host:
-            path: /mnt/datahdd/drone/cache/${DRONE_REPO_NAME}/node_modules
+            path: ${DRONE_CACHE}/${DRONE_REPO_NAME}/node_modules
 
 trigger:
     event: [ push, custom ]
