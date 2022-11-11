@@ -29,3 +29,4 @@ steps:
             - apk update && apk upgrade && apk add git
             - npm i
             - npm run semantic-release
+
