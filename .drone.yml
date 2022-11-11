@@ -6,29 +6,15 @@ platform:
     arch: arm64
 
 volumes:
-    -   name: cache
+    -   name: node_modules
         host:
-            path: /mnt/datahdd/drone/cache
-    -   name: docker
-        host:
-            path: /var/run/docker.sock
+            path: /mnt/datahdd/drone/cache/$DRONE_REPO_NAME/node_modules
 
 trigger:
-    event: [ push, pull_request ]
+    event: [ push, custom ]
     branch: [ main ]
 
 steps:
-    -   name:  restore cache
-        image: meltwater/drone-cache
-        settings:
-            backend: "filesystem"
-            restore: true
-            mount:
-                - 'node_modules'
-        volumes:
-            -   name: cache
-                path: /tmp/cache
-
     -   name:  publish
         image: node:18-alpine
         environment:
@@ -36,22 +22,10 @@ steps:
                 from_secret: GH_TOKEN
             NPM_TOKEN:
                 from_secret: NPM_TOKEN
+        volumes:
+            - name: node_modules
+              path: $DRONE_WORKSPACE/node_modules
         commands:
             - apk update && apk upgrade && apk add git
             - npm i
             - npm run semantic-release
-
-    -   name:  rebuild cache
-        image: meltwater/drone-cache
-        settings:
-            backend: "filesystem"
-            rebuild: true
-            mount:
-                - 'node_modules'
-        volumes:
-            -   name: cache
-                path: /tmp/cache
-        when:
-            status:
-                - success
-                - failure
