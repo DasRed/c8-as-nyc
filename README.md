@@ -11,4 +11,5 @@ And yes, [mocha](https://www.npmjs.com/package/mocha) supports [c8](https://www.
 
 This package solves the problem with IntelliJ IDEs 😉
 
+
 ![It's magic](https://memegenerator.net/img/instances/33868091.jpg)
