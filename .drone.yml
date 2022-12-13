@@ -1,32 +1,4 @@
-kind: pipeline
-type: docker
-name: default
-platform:
-    os:   linux
-    arch: arm64
-
-volumes:
-    -   name: node_modules
-        host:
-            path: /mnt/datahdd/drone/cache/${DRONE_REPO_NAME}/node_modules
-
-trigger:
-    event: [ push, custom ]
-    branch: [ main ]
-
-steps:
-    -   name:  publish
-        image: node:18-alpine
-        environment:
-            GH_TOKEN:
-                from_secret: GH_TOKEN
-            NPM_TOKEN:
-                from_secret: NPM_TOKEN
-        volumes:
-            - name: node_modules
-              path: /drone/src/node_modules
-        commands:
-            - apk update && apk upgrade && apk add git
-            - npm i
-            - npm run semantic-release
-
+kind: template
+load: nodePackagePublishToNpm.jsonnet
+data:
+    node: 19
